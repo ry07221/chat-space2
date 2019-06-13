@@ -12,9 +12,10 @@ $(document).on('turbolinks:load', function(){
                 </div>`
       return html;
   }
-  $('#new_message').on('submit',function(e){
+  $('.new_message').on('submit',function(e){
     var formData = new FormData(this);
     var send_url = $(this).attr('action');
+    
     $.ajax({
       url: send_url,
       type: 'POST',
@@ -35,7 +36,6 @@ $(document).on('turbolinks:load', function(){
     })
     return false;
   });
-
 
   var reloadMessages = function() {
     var last_id = $('.message').eq(-1).data('id');
@@ -74,4 +74,3 @@ $(document).on('turbolinks:load', function(){
     }
   } ,5000)
 });
-

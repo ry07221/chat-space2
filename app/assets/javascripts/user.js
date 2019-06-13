@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load',function(){
+$(document).on('turbolinks:load',function(){  //リロードしなくてもjsが動くようにする
   function appendUser(user) {
     var html = `<div class="chat-group-user clearfix">
                   <p class="chat-group-user__name">${user.name}</p>
@@ -24,7 +24,7 @@ $(document).on('turbolinks:load',function(){
   var preWord;
 
 
-  $('#user-search-field').on('keyup',function(){
+  $('#user-search-field').on('keyup',function(){  
     var input = $('#user-search-field').val();
     var inputs = input.split(" ").filter(function(a) { return a;});
     var newInputs = inputs.map(editElement);
