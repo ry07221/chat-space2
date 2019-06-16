@@ -59,7 +59,7 @@ $(document).on('turbolinks:load',function(){  //リロードしなくてもjsが
             });
           }
           else {
-            appendErrMsgToHTML('一致するユーザーはいません');
+            appendErrMsgToHTML('ユーザーはいません');
           }
         }
       })
