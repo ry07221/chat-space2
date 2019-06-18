@@ -12,7 +12,8 @@ $(document).on('turbolinks:load', function(){
                 </div>`
       return html;
   }
-  $('.new_message').on('submit',function(e){
+  $('.new_message').on('submit',function(e){  //イベントの発火元は送信ボタンではなくて、フォーム全体の情報を送 
+                                              //りたいからフォームタグのIDを指定
     var formData = new FormData(this);
     var send_url = $(this).attr('action');
     
@@ -30,6 +31,7 @@ $(document).on('turbolinks:load', function(){
       var height = $('.messages')[0].scrollHeight;
       $('.messages').animate({scrollTop:height});
       $('#new_message')[0].reset();
+      console.log(data.id)
     })
     .fail(function(){
       alert('メッセージの送信に失敗しました。');
