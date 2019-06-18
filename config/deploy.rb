@@ -1,8 +1,8 @@
 # config valid only for current version of Capistrano
 lock '3.11.0'
 
-set :application, 'chat-space'
-set :repo_url,  'git@github.com:pigutty/chat-space.git'
+set :application, 'chat-space2'
+set :repo_url,  'git@github.com:ry07221/chat-space2.git'
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
