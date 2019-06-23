@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function(){
   function buildHTML(message){
-    var image = (message.image !== null)? `<img src="${message.image}" class="content__message__image"></img>` : " " ;
+    var image = message.image? `<img src="${message.image}" class="content__message__image"></img>` : " " ;
     var html = `<div class="message" data-id='${message.id}'>
                   <div class="message__upper">
                     <div class="message__upper__user">${message.user_name}</div>
@@ -17,7 +17,6 @@ $(document).on('turbolinks:load', function(){
                                               //りたいからフォームタグのIDを指定
     var formData = new FormData(this);
     var send_url = $(this).attr('action');
-    
     $.ajax({
       url: send_url,
       type: 'POST',
@@ -26,7 +25,7 @@ $(document).on('turbolinks:load', function(){
       processData: false,
       contentType: false,
     })
-    .done(function(data){                        
+    .done(function(data){ 
       var html = buildHTML(data);    
       $('.messages').append(html);            
       var height = $('.messages')[0].scrollHeight;
