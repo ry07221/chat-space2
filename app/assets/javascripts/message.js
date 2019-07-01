@@ -14,7 +14,7 @@ $(document).on('turbolinks:load', function(){
   }
 
   $('.new_message').on('submit',function(e){  //イベントの発火元は送信ボタンではなくて、フォーム全体の情報を送 
-                                              //りたいからフォームタグのIDを指定
+                                              //りたいからフォームタグのクラスを指定
     var formData = new FormData(this);
     var send_url = $(this).attr('action');
     $.ajax({
