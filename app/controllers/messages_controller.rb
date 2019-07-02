@@ -1,9 +1,9 @@
 class MessagesController < ApplicationController
-  before_action :set_group
+  before_action :set_group  #messagesコントローラの全てのアクションで@groupを利用できるようにするため
 
   def index
     @message = Message.new
-    @messages = @group.messages.includes(:user)
+    @messages = @group.messages.includes(:user)   #「n + 1 問題」を避けるための記述
   end
 
   def create

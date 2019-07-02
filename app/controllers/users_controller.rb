@@ -8,10 +8,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
+  def edit　　　#必要になるインスタンス変数はない
   end
 
-  def update
+  def update   #保存をできた場合、できなかった場合で処理を分岐
     if current_user.update(user_params)
       redirect_to root_path
     else
