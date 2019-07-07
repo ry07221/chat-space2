@@ -2,19 +2,19 @@
 lock '3.11.0'
 
 set :application, 'chat-space2'
-set :repo_url,  'git@github.com:ry07221/chat-space2.git'
+set :repo_url,  'git@github.com:ry07221/chat-space2.git'   ##gitからコードをcloneする
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
 set :rbenv_type, :user
-set :rbenv_ruby, '2.5.1' #カリキュラム通りに進めた場合、2.5.1か2.3.1です
+set :rbenv_ruby, '2.5.1' #カリキュラム通りに進めた場合、2.5.1 or 2.3.1
 
 set :ssh_options, auth_methods: ['publickey'],
                   keys: ['~/.ssh/key9.pem']  
 
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
 set :unicorn_config_path, -> { "#{current_path}/config/unicorn.rb" }
-set :keep_releases, 5
+set :keep_releases, 5  #デプロイした最新のアプリ5個をキープ
 set :linked_files, %w{ config/secrets.yml }
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do

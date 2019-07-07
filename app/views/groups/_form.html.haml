@@ -28,7 +28,7 @@
           %p.chat-group-user__name 
             = current_user.name
         - group.users.each do |user|
-        - next if current_user.id = user.id  #ループをスキップする
+        - next if current_user.id != user.id  #ループをスキップする
           .chat-group-user.clearfix.js-chat-member{id: user.id}
             %input{name: "group[user_ids][]", type: "hidden", value: user.id}
             %p.chat-group-user__name 

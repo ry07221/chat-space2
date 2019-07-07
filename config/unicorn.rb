@@ -5,10 +5,10 @@ worker_processes 1
 working_directory "#{app_path}/current"
 listen "#{app_path}/shared/tmp/sockets/unicorn.sock"
 pid "#{app_path}/shared/tmp/pids/unicorn.pid"
-stderr_path "#{app_path}/shared/log/unicorn.stderr.log"
-stdout_path "#{app_path}/shared/log/unicorn.stdout.log"
+stderr_path "#{app_path}/shared/log/unicorn.stderr.log"     # 標準エラー出力ログ出力先
+stdout_path "#{app_path}/shared/log/unicorn.stdout.log"     # 標準出力ログ出力先
 
-timeout 60
+timeout 60   #何秒でタイムアウトするか
 
 preload_app true
 GC.respond_to?(:copy_on_write_friendly=) && GC.copy_on_write_friendly = true
