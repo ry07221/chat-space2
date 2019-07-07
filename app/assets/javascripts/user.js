@@ -37,32 +37,18 @@ $(document).on('turbolinks:load',function(){  //リロードしなくてもjsが
         data: { keyword: input},
         dataType: 'json'
       })
-      .done(function(users) {
-        $('#user-search-result').empty();
-        var testusers = $('.chat-group-user.clearfix.js-chat-member');
-        if (input.length !== 0){
-          if (users.length !== 0) {
-            users.forEach(function(user){
-              var userbox = [];
-              var user_id = $(user).attr('id');
-              $(testusers).each(function(index, testuser){
-                var id = $(testuser).attr('id');
-                if ( user_id == id ) {
-                  userbox.push(user)
-                }
-              })
-              if (userbox.length == 0) {
-                appendUser(user)
-              } else{
-                appendErrMsgToHTML('一致するユーザーはいません');
-              }
-            });
-          }
-          else {
-            appendErrMsgToHTML('ユーザーはいません');
-          }
+   
+      .done(function(data) {    
+        $("#user-search-result").empty();
+        if (data.length !== 0) {
+          data.forEach(function(data){
+            appendUser(data);
+          });
         }
-      })
+        else {
+          appendErrMsgToHTML("一致するユーザーはいません");
+        }
+     })
       .fail(function(){
         alert('検索に失敗しました');
       })
@@ -70,6 +56,7 @@ $(document).on('turbolinks:load',function(){  //リロードしなくてもjsが
     preWord = word;
   });
 });
+
 
 $(document).on("click", ".user-search-add", function (){
   function addUser(userId,userName) {
