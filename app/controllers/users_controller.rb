@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit　　　#必要になるインスタンス変数はない
+  def edit  #必要になるインスタンス変数はない
   end
 
   def update   #保存をできた場合、できなかった場合で処理を分岐
