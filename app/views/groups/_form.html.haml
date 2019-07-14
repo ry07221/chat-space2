@@ -9,18 +9,18 @@
     .chat-group-form__field--left
       = f.label :name, class: 'chat-group-form__label'
     .chat-group-form__field--right
-      = f.text_field :name, class: 'chat__group_name chat-group-form__input', placeholder: "グループ名を入力してください"
+      = f.text_field :name, class: 'chat__group_name chat-group-form__input', placeholder: "Input Group Name"
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
-      %label.chat-group-form__label{for: "chat_group_チャットメンバーを追加"} チャットメンバーを追加
+      %label.chat-group-form__label{for: "chat_group_Add chat Member"} Add Chat Member
     .chat-group-form__field--right
       .chat-group-form__search.clearfix
-        %input#user-search-field.chat-group-form__input{placeholder: "追加したいユーザー名を入力してください", type: "text"}/
+        %input#user-search-field.chat-group-form__input{placeholder: "Input the users U wanna add", type: "text"}/
       #user-search-result
 
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
-      %label.chat-group-form__label{for: "chat_group_チャットメンバー"} チャットメンバー
+      %label.chat-group-form__label{for: "chat_group_Chat Member"} Chat Member
     .chat-group-form__field--right
       #chat-group-users
         .chat-group-user.clearfix.js-chat-member{id: current_user.id}
@@ -32,7 +32,7 @@
             %p.chat-group-user__name 
               = user.name
             - if user.id != current_user.id
-              %a.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn 削除
+              %a.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn DELETE
 
 
   .chat-group-form__field.clearfix

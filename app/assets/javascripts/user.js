@@ -37,7 +37,7 @@ $(document).on('turbolinks:load',function(){  //リロードしなくてもjsが
         data: { keyword: input},
         dataType: 'json'
       })
-   
+
       .done(function(data) {    
         $("#user-search-result").empty();
         if (data.length !== 0) {
@@ -46,11 +46,11 @@ $(document).on('turbolinks:load',function(){  //リロードしなくてもjsが
           });
         }
         else {
-          appendErrMsgToHTML("一致するユーザーはいません");
+          appendErrMsgToHTML("No Users");
         }
      })
       .fail(function(){
-        alert('検索に失敗しました');
+        alert('failed to reserch');
       })
     }
     preWord = word;
@@ -63,7 +63,7 @@ $(document).on("click", ".user-search-add", function (){
     var html = `<div class='chat-group-user clearfix js-chat-member' id='${userId}'>
                     <input name='group[user_ids][]' type='hidden' value='${userId}'>
                       <p class='chat-group-user__name'>${userName}</p>
-                      <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
+                      <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>DELEATE</a>
                   </div>`
     $('#chat-group-users').append(html);
   }
