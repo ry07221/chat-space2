@@ -33,16 +33,17 @@ $(document).on('turbolinks:load', function(){
       $('#new_message')[0].reset();
     })
     .fail(function(){
-      alert('メッセージの送信に失敗しました。');
+      alert('failed to send Messages');
     })
     return false;
   });
 
-  var reloadMessages = function() {
-    var last_id = $('.message').eq(-1).data('id');
-    reload_url_pattern = /messages/;
-    var api_url = window.location.pathname.replace(reload_url_pattern,'api/messages');
-    $.ajax({
+      var reloadMessages = function() {
+      var last_id = $('.message').eq(-1).data('id');
+      reload_url_pattern = /messages/;
+      var api_url = window.location.pathname.replace(reload_url_pattern,'api/messages');
+      var last_id = $('.message').eq(-1).data('id');
+      $.ajax({
       type: "GET",
       url: api_url,
       data: { last_id: last_id },
@@ -60,7 +61,7 @@ $(document).on('turbolinks:load', function(){
       })
     })
     .fail(function(){
-      alert('自動更新に失敗しました');
+      alert('failed to auto renewal');
     })
   };
 
