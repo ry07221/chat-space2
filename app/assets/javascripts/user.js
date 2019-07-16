@@ -14,9 +14,6 @@ $(document).on('turbolinks:load',function(){  //リロードしなくてもjsが
     $('#user-search-result').append(html);
   }
 
-
-
-
   function editElement(element){
     var result = '^'+element;
     return result;
