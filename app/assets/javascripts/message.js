@@ -13,12 +13,12 @@ $(document).on('turbolinks:load', function(){
       return html;
   }
 
-  $('.new_message').on('submit',function(e){  //イベントの発火元は送信ボタンではなくて、フォーム全体の情報を送 
-                                              //りたいからフォームタグのクラスを指定
+  $('.new_message').on('submit',function(e){  //イベントの発火元は送信ボタンではなくて、フォーム全体の情報を送り
+                                              //たいからフォームタグのクラスを指定
     var formData = new FormData(this);
-    var send_url = $(this).attr('action');
+    var url = $(this).attr('action');
     $.ajax({
-      url: send_url,
+      url: url,
       type: 'POST',
       data: formData,
       dataType: 'json',
@@ -38,22 +38,26 @@ $(document).on('turbolinks:load', function(){
     return false;
   });
 
-      var reloadMessages = function() {
-      var last_id = $('.message').eq(-1).data('id');
-      reload_url_pattern = /messages/;
-      var api_url = window.location.pathname.replace(reload_url_pattern,'api/messages');
-      var last_id = $('.message').eq(-1).data('id');
+
+
+  var reloadMessages = function() {
+
+    if (window.location.href.match(/\/groups\/\d+\/messages/)){
+      //グループに入ったときのみ、自動更新する
+    last_message_id = $(".message-list:last").data("id") || 0;
+      //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
+
       $.ajax({
       type: "GET",
-      url: api_url,
-      data: { last_id: last_id },
+      url: `/groups/${group_id}/api/messages`,
+      data: {id: last_message_id},  //dataオプションでリクエストに値を含める
       dataType: 'json',
     })
     .done(function(messages){
-      var insertHTML = '';
+      var insertHTML = '';     //追加するHTMLの入れ物を作る
       messages.forEach(function(message){
         if(message.id > last_id) {
-          insertHTML += buildHTML(message);
+          insertHTML = buildHTML(message);
           $('.messages').append(insertHTML);
           var height = $('.messages')[0].scrollHeight;
           $('.messages').animate({scrollTop:height});
@@ -65,14 +69,6 @@ $(document).on('turbolinks:load', function(){
     })
   };
 
-  var interval = setInterval(function() {
-    var group_view_url_pattern = /\/groups\/\d+\/messages/;
-    var result = window.location.href.match(group_view_url_pattern);
-    if (result){
-      reloadMessages();
-    }
-    else {
-      clearInterval(interval);
-    }
-  } ,5000)
-});
+  setInterval(reloadMessages, 5000);
+  }
+})
