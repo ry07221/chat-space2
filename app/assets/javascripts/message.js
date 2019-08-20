@@ -1,4 +1,5 @@
 $(document).on('turbolinks:load', function(){
+  
   function buildHTML(message){
     var image = message.image? `<img src="${message.image}" class="content__message__image"></img>` : " " ;
     var html = `<div class="message" data-id='${message.id}'>
@@ -44,19 +45,19 @@ $(document).on('turbolinks:load', function(){
 
     if (window.location.href.match(/\/groups\/\d+\/messages/)){
       //グループに入ったときのみ、自動更新する
-    last_message_id = $(".message-list:last").data("id") || 0;
+    last_message_id = $(".message:last").data("id") || 0;
       //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
 
       $.ajax({
       type: "GET",
-      url: `/groups/${group_id}/api/messages`,
+      url: "api/messages",
       data: {id: last_message_id},  //dataオプションでリクエストに値を含める
       dataType: 'json',
     })
     .done(function(messages){
       var insertHTML = '';     //追加するHTMLの入れ物を作る
       messages.forEach(function(message){
-        if(message.id > last_id) {
+        if(message.id > last_message_id) {
           insertHTML = buildHTML(message);
           $('.messages').append(insertHTML);
           var height = $('.messages')[0].scrollHeight;
@@ -69,6 +70,6 @@ $(document).on('turbolinks:load', function(){
     })
   };
 
-  setInterval(reloadMessages, 5000);
   }
+  setInterval(reloadMessages, 5000);
 })
