@@ -2,7 +2,7 @@ $(document).on('turbolinks:load', function() {
   function appendUser(user){
     var html = `<div class="chat-group-user clearfix">
                  <p class="chat-group-user__name">${user.name}</p>
-                 <a class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.user_id}" data-user-name="${user.name}">Add</a>
+                 <a class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.id}" data-user-name="${user.name}">Add</a>
                </div>`
    $('#user-search-result').append(html);
   }
@@ -57,7 +57,7 @@ $(document).on('turbolinks:load', function() {
   $("#user-search-result").on("click", ".chat-group-user__btn--add", function (){
     $('#chat-group-users').val();
       var id = $(this).data("user-id");
-      var name =$(this).data("user-name");
+      var name = $(this).data("user-name");
       addUser(id, name);
       $(this).parent().remove();
     });
