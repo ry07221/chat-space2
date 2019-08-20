@@ -1,39 +1,37 @@
 $(document).on('turbolinks:load', function() {
-  function appendProduct(user){
+  function appendUser(user){
     var html = `<div class="chat-group-user clearfix">
                  <p class="chat-group-user__name">${user.name}</p>
                  <a class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.user_id}" data-user-name="${user.name}">Add</a>
                </div>`
    $('#user-search-result').append(html);
   }
+
+  function appendErrMsgToHTML(user) {
+    var html = 
+      `<div class="chat-group-user clearfix">
+        <p class="chat-group-user__name">${user}</p>
+      </div>`
+   $('#user-search-result').append(html);
+  }
   
   $('#user-search-field').on('keyup', function(e){   //テキストフィールドがkeyupしたら、テキストフィールドの文字を取得して変数inputに代入する
     var input = $("#user-search-field").val();
-    if (input.length == 0)
-    { 
-      $("#user-search-result").empty();
-      return;
-    }
-
-    //チャットメンバーにすでに登録されているユーザを取得
-    var x = $('.js-user');
-    var arr = [];
-    x.each(function(i, ele) {
-      arr.push(ele.value);
-    })
-
+    var userlist = []
+      $(".chat-group-user").each(function(){  // 削除ボタンに格納されているinputタグのクラス→この要素のvalueにuserのidが格納されてる
+        userlist.push($(this).data("user-id"))  //idをuserlistに格納する
+      })
+   
     $.ajax({
       url: "/users",
       type: "GET",
-      data: { keyword: input,
-              user_id: arr},
+      data: { keyword: input},
       dataType: 'json'
     })
-    .done(function(users){
+    .done(function(data){
       $("#user-search-result").empty();
-
       if (data.length !== 0) {
-        data.forEach(function(data){
+        data.forEach(function(data){      //forEach : 与えられた関数を配列に含まれる各要素に対して一度ずつ呼び出す
           appendUser(data);
         });
       }
@@ -68,3 +66,6 @@ $(document).on('turbolinks:load', function() {
       });
   });
 
+
+
+  
