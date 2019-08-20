@@ -45,7 +45,7 @@ $(document).on('turbolinks:load', function(){
 
     if (window.location.href.match(/\/groups\/\d+\/messages/)){  //前半→ページ遷移に使う，後半→マッチするもの
       //グループに入ったときのみ、自動更新する
-    last_message_id = $(".message:last").data("id") || 0;  //共にからの場合も考慮(0を入れる)
+    last_message_id = $(".message:last").data("id") || 0;  //共に空の場合も考慮(0を入れる)
       //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
 
       $.ajax({
