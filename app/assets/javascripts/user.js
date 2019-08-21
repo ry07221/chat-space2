@@ -31,7 +31,7 @@ $(document).on('turbolinks:load', function() {
     .done(function(data){
       $("#user-search-result").empty();
       if (data.length !== 0) {
-        data.forEach(function(data){      //forEach : 与えられた関数を配列に含まれる各要素に対して一度ずつ呼び出す
+        data.forEach(function(data){      //forEach : 与えられた関数を配列に含まれる各要素の数だけ行う
           appendUser(data);
         });
       }
