@@ -1,6 +1,7 @@
 .chat {
   float: left;
   width: calc(100% - 300px);
+  
   .header {
     box-sizing: border-box;
     height: 100px;
@@ -39,11 +40,13 @@
       }
     }
   }
+  
   .messages{
     overflow: scroll;
     height: calc(100vh - 190px);
     padding: 6px 20px 0 20px;
     box-sizing: border-box;
+
     .message{
       padding: 40px 0 0 20px;
       &__upper{
@@ -67,11 +70,12 @@
       }
     }
   }
+
   .form{
     height: 90px;
     padding: 20px 40px;
     box-sizing: border-box;
-    background-color: $form_background;
+    background-color: $form_background;w
     .new_message{
       width: 100%;
       height: 100%;
@@ -114,3 +118,9 @@
     }
   }
 }
+
+
+
+
+
+

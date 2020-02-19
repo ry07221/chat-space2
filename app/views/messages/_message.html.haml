@@ -1,4 +1,5 @@
 .message{data: {id: "#{message.id}"}}
+     -# { data: { message_id: message.id } }
   .message__upper
     .message__upper__user
       = message.user.name
@@ -7,6 +8,6 @@
   .message__lower
     = message.content if message.content.present?
   = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
-        
 
-        
+  
+  
