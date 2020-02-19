@@ -10,6 +10,7 @@ set :rbenv_type, :user
 set :rbenv_ruby, '2.5.1' #カリキュラム通りに進めた場合、2.5.1 or 2.3.1
 
 set :ssh_options, auth_methods: ['publickey'],     
+
                   keys: ['~/.ssh/key9.pem']      #どの公開鍵を利用してデプロイするか
 
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }    #プロセス番号を記載したファイルの場所
@@ -41,3 +42,4 @@ set :default_env, {
   AWS_ACCESS_KEY_ID: ENV["AWS_ACCESS_KEY_ID"],
   AWS_SECRET_ACCESS_KEY: ENV["AWS_SECRET_ACCESS_KEY"]
 }
+

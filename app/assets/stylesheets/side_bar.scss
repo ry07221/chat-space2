@@ -2,6 +2,7 @@
   float: left;
   box-sizing: border-box;
   width: 300px;
+
   .header{
     height: 100px;
     background-color: $side_blue_dark;
@@ -10,6 +11,7 @@
     line-height: 100px;
     display: flex;
     justify-content: space-between;
+
     &__name{
       font-weight: bold;
       }
@@ -23,11 +25,13 @@
       }
     }
   }
+
   .groups{
     overflow: scroll;
     background-color: $side_blue_light;
     height: calc(100vh - 100px);
     padding: 0 20px;
+    
     .group{
       box-sizing: border-box;
       padding: 20px 0 ;
@@ -44,3 +48,4 @@
     }
   }
 }
+
